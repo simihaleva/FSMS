@@ -61,13 +61,15 @@ if($authority === "Преподавател"){
         </div>
 
         <div class="content">
-            <h2 style="text-align:center;">Моля, изберете опция във всички полета!</h2>
+            <h2 style="text-align:center;">Моля, изберете опция в задължителните полета!</h2>
            </div>
+
+           <h3 style="font-size:18px; text-align: center" >Сесията за летен семестър ще се проведе в периода: 08.06.2020г. - 03.07.2020г.</h3>
    
            <div class="search_schedule">
-               <h1>Седмично разписание</h1>
+               <h1>Дати за изпити</h1>
 
-               <form action="tables.php" method="post">
+               <form action="exam_dates_results.php" method="post">
                  <h2>Специалност:</h2>
                 <select name="specialty">
                     <option value="Компютърни науки">Компютърни науки</option>
@@ -90,8 +92,8 @@ if($authority === "Преподавател"){
                       <option value="4">4</option>
                     </select>
 
-                    <h2>Дата:</h2>
-                    <input type="date" name="date">
+                    <!--<h2>Предмет:</h2>
+                    <input type="text" id="subject"  placeholder="Въведете текст:" name="subject">-->
 
                    <input type="submit" name="submit" value="Търсене">
                </form>
@@ -103,7 +105,7 @@ if($authority === "Преподавател"){
             $selected_val_s = $_POST['specialty'];
 
             $selected_val_c = $_POST['course'];
-            $selected_val_d = $_POST['date'];
+            //$selected_val_d = $_POST['subject'];
             }
                 ?>
                 

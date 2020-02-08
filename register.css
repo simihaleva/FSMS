@@ -28,7 +28,7 @@ body {
   	display: flex;
   	flex-wrap: wrap;
   	justify-content: center;
-  	padding-top: 20px;
+  	padding-top: 15px;
 }
 .register form label {
   	display: flex;
@@ -37,10 +37,11 @@ body {
   	width: 50px;
  	height: 50px;
   	background-color: #3274d6;
-  	color: #ffffff;
+      color: #ffffff;
+      margin-bottom: 20px;
 }
-.register form input[type="password"], .register form input[type="text"], .register form input[type="email"], .register form input[type="firstname"], 
-                  .register form input[type="lastname"], .register form input[type="facN"], .register form input[type="date"] {
+.register form input[type="password"], .register form input[type="text"], .register form input[type="email"], .register form input[type="first_name"], 
+                  .register form input[type="last_name"], .register form input[type="fn"], .register form input[type="date"] {
   	width: 310px;
   	height: 50px;
   	border: 1px solid #dee0e4;
@@ -67,15 +68,14 @@ body.register {
 	background-color: #f3f4f7;
 }
 
-input[type="radio"]{
-    margin: 0 10px 0 10px;
+.register form input[type="radio"]{
+    width: 11px;
+    height: 20px;
+
+    margin: 1px 4px 20px 25px;
+    padding: 0 15px;
+    
   }
-
-
-
-
-
-
 
   .search_schedule {
     width: 400px;
@@ -98,16 +98,16 @@ input[type="radio"]{
     padding-top: 0px;
 }
     
-/*.search_schedule form label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-   height: 50px;
-    background-color: #3274d6;
-    color: #ffffff;
-}*/
 .search_schedule form  input[type="date"] {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    margin-left:99px;
+}
+
+.search_schedule form  input[type="text"] {
     width: 200px;
     height: 40px;
     border: 1px solid #dee0e4;
@@ -150,4 +150,159 @@ body.search_schedule {
     font-size: 18px;
     padding: 0px 0 5px 0;
     //border-bottom: 1px solid #dee0e4;
+}
+
+
+.search_room {
+    width: 400px;
+    background-color: #ffffff;
+    //background-color: #435165;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    margin: 50px 460px ;
+    margin-right:0px;
+    //float: left;
+
+}
+.search_room h1 {
+    text-align: center;
+    color: #5b6574;
+    font-size: 20px;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #dee0e4;
+}
+ .seacrh_room form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0px;
+
+}
+    
+ .search_room form  input[type="date"] {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    margin-left:99px;
+}
+.search_room form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #3274d6;
+   border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+ .search_room form input[type="submit"]:hover {
+  background-color: #2868c7;
+    transition: background-color 0.2s;
+}
+
+body.search_room {
+  background-color: #f3f4f7;
+}
+
+ .search_room form select {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    margin-left:99px;
+}
+
+ .search_room h2 {
+    text-align: center;
+    //color: #5b6574;
+    font-size: 16px;
+    padding: 0px 0 5px 0;
+    //border-bottom: 1px solid #dee0e4;
+}
+
+
+ .search_room1 {
+    width: 400px;
+    background-color: #ffffff;
+    //background-color: #435165;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    margin: 50px 460px;
+    //float: right;
+    margin-left:0px;
+
+}
+ .search_room1 h1 {
+    text-align: center;
+    color: #5b6574;
+    font-size: 20px;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #dee0e4;
+}
+ .seacrh_room1 form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0px;
+}
+    
+ .search_room1 form  input[type="date"], .search_room1 form input[type="text"] {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    margin-left:99px;
+}
+
+
+.search_room1 form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #3274d6;
+   border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+.search_room1 form input[type="submit"]:hover {
+  background-color: #2868c7;
+    transition: background-color 0.2s;
+}
+
+body.search_room1 {
+  background-color: #f3f4f7;
+}
+
+ .search_room1 form select {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    margin-left:99px;
+}
+
+.search_room1 h2 {
+    text-align: center;
+    //color: #5b6574;
+    font-size: 16px;
+    padding: 0px 0 5px 0;
+    //border-bottom: 1px solid #dee0e4;
+}
+
+#left
+{
+  float: left;
+
+}
+
+#right
+{
+  float: right;
+
 }

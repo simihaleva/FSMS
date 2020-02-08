@@ -1,0 +1,220 @@
+html {
+  background-color:  #f3f4f7;
+}
+
+#scheduletable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  //width: 95%;
+  //margin-top: 40px;
+  margin-left: 45px;
+  table-layout: auto;
+  width: 250px;
+}
+
+#scheduletable {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h3 {
+text-align:center;
+}
+
+#scheduletable td, #scheduletable th {
+  border: 1px solid rgb(146, 141, 141);
+  padding: 5px;
+  text-align: center;
+  //table-layout: auto;
+}
+
+#scheduletable td:hover {
+  background-color: #ddd;
+}
+
+#scheduletable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  //background-color: #3274d6;
+  background-color: #DEB887;
+  color: black;
+  font-size:15px;
+  height:20px;
+  border:double;
+}
+
+#scheduletable td {
+  height:5px;
+  font-size:14px;
+  }
+
+#M,#Tu,#W,#Th,#F,#Sa,#Su,#H {
+  //background-color: #3274d6;
+  background-color: #DCDCDC;
+  //background-color:#DEB887;
+}
+
+  .navtop {
+    //background-color: #2f3947;
+    height: 60px;
+    width: 100%;
+    border: 0;
+    margin-bottom: 20px;
+  }
+  .navtop div {
+    display: flex;
+    margin: 0 auto;
+    width: 1000px;
+    height: 100%;
+  }
+  .navtop div h1, .navtop div a {
+    display: inline-flex;
+    align-items: center;
+  }
+  .navtop div h1 {
+    flex: 1;
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+    color: #483D8B;
+    font-weight: bold;
+  }
+
+  .navtop div h2 {
+    flex: 1;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    color: #483D8B;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    margin-left:110px;
+    //margin-top:10px;
+  }
+
+  .navtop div a {
+    padding: 0 20px;
+    text-decoration: none;
+    color: #483D8B;
+    font-weight: bold;
+    font-size: 18px;
+
+  }
+  .navtop div a i {
+    padding: 2px 8px 0 0;
+    font-size: 18px;
+  
+  }
+  .navtop div a:hover {
+    color: #eaebed;
+  }
+
+  #scheduletable1 {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    //width: 95%;
+    //margin-top: 40px;
+    margin-left: 45px;
+    table-layout: auto;
+    width: 250px;
+  }
+  
+  #scheduletable1 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  h3 {
+  text-align:center;
+  }
+  
+  #scheduletable1 td, #scheduletable1 th {
+    border: 1px solid rgb(146, 141, 141);
+    padding: 5px;
+    text-align: center;
+    //table-layout: auto;
+  }
+  
+  #scheduletable1 td:hover {
+    background-color: #ddd;
+  }
+  
+  #scheduletable1 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    //background-color: #3274d6;
+    background-color: #DEB887;
+    color: black;
+    font-size:15px;
+    height:20px;
+    border:double;
+  
+  }
+
+  #scheduletable1 td {
+    height:3px;
+    font-size:11px;
+  }
+
+  #scheduletable1 #M, #scheduletable1 #Tu, #scheduletable1 #W, #scheduletable1 #Th, #scheduletable1 #F, #scheduletable1 #Sa, #scheduletable1 #Su {
+    border:double;
+  }
+
+  #scheduletable #M, #scheduletable #Tu, #scheduletable #W, #scheduletable #Th, #scheduletable #F, #scheduletable #Sa, #scheduletable #Su {
+    border:double;
+ }
+
+ #scheduletable2 {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  //width: 95%;
+  margin-top: 50px;
+  //margin-left: 45px;
+  table-layout: auto;
+  width: 250px;
+}
+
+#scheduletable2  {
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+h3 {
+text-align:center;
+}
+
+#scheduletable2 td, #scheduletable2 th {
+  border: 1px solid rgb(146, 141, 141);
+ padding: 50px;
+
+  text-align: center;
+  //table-layout: auto;
+ padding-top:0;
+ padding-bottom:0;
+
+  
+}
+
+
+#scheduletable2 th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  //background-color: #3274d6;
+  background-color: #DEB887;
+  color: black;
+  font-size:15px;
+  height:20px;
+  border:double;
+
+}
+
+#scheduletable2 td {
+  height:3px;
+  font-size:11px;
+}
+

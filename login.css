@@ -146,8 +146,6 @@ body.loggedin {
       text-align:center;
   }
 
-
-
   .navbottom {
 	//background-color: #2f3947;
 	height: 80px;
@@ -177,16 +175,14 @@ body.loggedin {
 .navbottom div a {
 	padding: 0 40px;
     text-decoration: none;
-
 	color:#483D8B;
     font-weight: bold;
-    font-size: 25px;
-
-
+    font-size: 20px;
 }
+
 .navbottom div a i {
     padding: 2px 10px 0 4px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .navbottom div .links {
@@ -209,4 +205,5 @@ body.loggedin {
     margin-top: 10px;
     //transition: width .3s;
 }
+
 
