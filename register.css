@@ -1,0 +1,153 @@
+* {
+  	box-sizing: border-box;
+  	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+  	font-size: 16px;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+body {
+      //background-color: #435165;
+      //background-color: #f3f4f7;
+  	margin: 0;
+}
+.register {
+  	width: 400px;
+      background-color: #ffffff;
+      //background-color: #435165;
+  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  	margin: 50px auto;
+}
+.register h1 {
+  	text-align: center;
+  	color: #5b6574;
+  	font-size: 24px;
+  	padding: 20px 0 20px 0;
+  	border-bottom: 1px solid #dee0e4;
+}
+.register form {
+  	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	padding-top: 20px;
+}
+.register form label {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 50px;
+ 	height: 50px;
+  	background-color: #3274d6;
+  	color: #ffffff;
+}
+.register form input[type="password"], .register form input[type="text"], .register form input[type="email"], .register form input[type="firstname"], 
+                  .register form input[type="lastname"], .register form input[type="facN"], .register form input[type="date"] {
+  	width: 310px;
+  	height: 50px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+}
+.register form input[type="submit"] {
+  	width: 100%;
+  	padding: 15px;
+  	margin-top: 20px;
+  	background-color: #3274d6;
+ 	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #ffffff;
+  	transition: background-color 0.2s;
+}
+.register form input[type="submit"]:hover {
+	background-color: #2868c7;
+  	transition: background-color 0.2s;
+}
+
+body.register {
+	background-color: #f3f4f7;
+}
+
+input[type="radio"]{
+    margin: 0 10px 0 10px;
+  }
+
+
+
+
+
+
+
+  .search_schedule {
+    width: 400px;
+    background-color: #ffffff;
+    //background-color: #435165;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    margin: 50px auto;
+}
+.search_schedule h1 {
+    text-align: center;
+    color: #5b6574;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #dee0e4;
+}
+.seacrh_schedule form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0px;
+}
+    
+/*.search_schedule form label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+   height: 50px;
+    background-color: #3274d6;
+    color: #ffffff;
+}*/
+.search_schedule form  input[type="date"] {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    margin-left:99px;
+}
+.search_schedule form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #3274d6;
+   border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+.search_schedule form input[type="submit"]:hover {
+  background-color: #2868c7;
+    transition: background-color 0.2s;
+}
+
+body.search_schedule {
+  background-color: #f3f4f7;
+}
+
+.search_schedule form select {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    margin-left:99px;
+}
+
+.search_schedule h2 {
+    text-align: center;
+    //color: #5b6574;
+    font-size: 18px;
+    padding: 0px 0 5px 0;
+    //border-bottom: 1px solid #dee0e4;
+}
