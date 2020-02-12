@@ -5,11 +5,13 @@ include 'conf.php';
 $time=$_GET['time'];
 $date=$_GET['date'];
 $room_id=$row['id'];
+$_SESSION['room_id']=$room_id;
+
 $is_computer=$row['is_computer'];
 
  echo '
  <div class="detailsForm">
- <form action="/insertRoom.php" method="get" >
+ <form action="/insertRoom.php" method="post" >
  <label>Предмет:</label><input type="text" name="subject"><br>
  <label>Специалност:</label>
  <select name="specialty">
@@ -40,9 +42,13 @@ $is_computer=$row['is_computer'];
  <label>Група:</label>
  <select name="group">
  <option value="1">1</option>
- <option value="2">3</option>
+ <option value="2">2</option>
  <option value="3">3</option>
  <option value="4">4</option>
+ <option value="5">5</option>
+ <option value="6">6</option>
+ <option value="7">7</option>
+ <option value="8">8</option>
  </select><br>
 
  <label> Лекция: 
@@ -55,7 +61,7 @@ $is_computer=$row['is_computer'];
  <input type="hidden" name="time" value='.$_GET['time'].'> 
  <input type="hidden" name="duration" value='.$_GET['duration'].'> 
  <input type="hidden" name="date" value='.$_GET['date'].'> 
- <input type="hidden" name="room_id" value='.$room_id.'> 
+ <input type="hidden" name="id" value='.$room_id.'> 
 <input type="hidden" name="is_computer" value='.$is_computer.'> 
 
  
@@ -64,12 +70,4 @@ $is_computer=$row['is_computer'];
 </div>
  ';
 
-// $time=$_POST['hour'];
- //$date=$_POST['date'];
-// $duration=$_POST['duration'];
-// $specialty=$_POST['specialty'];
-// $course=$_POST['course'];
-
- $insert=$conn -> prepare('INSERT INTO schedule INSERT INTO `schedule` (`id`, `id_room`, `date`, `day_of_week`, `start_hour`, `subject`, `id_teacher`, `is_lecture`, `specialty`, `course`, `group`, `duration`) 
-                            VALUES (NULL, , , , , , , , , , , )');
 ?>
