@@ -1,0 +1,26 @@
+.detailsForm{
+width: 400px;
+background-color: #ffffff;
+
+box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+margin: 50px auto;
+}
+
+h2{
+    
+        text-align: center;
+        color: #5b6574;
+        font-size: 24px;
+        padding: 20px 0 20px 0;
+        border-bottom: 1px solid #dee0e4;
+    
+}
+
+div{
+    font-size: 20px;
+    margin:10px;
+}
+
+*{
+    margin: 5px;
+}

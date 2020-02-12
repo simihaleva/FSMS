@@ -68,7 +68,7 @@ if($authority === "Преподавател"){
            <div class="search_schedule" style="width:500px;">
                <h1>Заявяване на изпит</h1>
 
-               <form action="" method="post">
+               <form action="roomsSession.php" method="post">
 
                <h2 style="float:left;margin-left:70px;margin-right:0;">Предмет:</h2>
                     <input type="text" id="subject"  placeholder="Въведете текст:" name="subject" style="float:right;margin-right:70px;margin-left:0;margin-top:9px" required>
@@ -102,17 +102,17 @@ if($authority === "Преподавател"){
                  <input type="text" id="count_rooms" name="count_rooms" placeholder="Въведете число: " style="float:right;margin-right:70px;margin-left:0;margin-top:9px" required>
 
                  <h2 style="float:left;margin-left:70px;margin-right:0;">Вид на залата:</h2>
-                  <select name="type" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
-                      <option value="Аудитория">Аудитория</option>
-                      <option value="Учебна зала">Учебна зала</option>
-                      <option value="Компютрна зала">Компютрна зала</option>
+                  <select name="is_computer" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
+                      <option value="0">Аудитория</option>
+                      <option value="0">Учебна зала</option>
+                      <option value="1">Компютрна зала</option>
                     </select>
 
                     <h2 style="float:left;margin-left:70px;margin-right:0;">Дата:</h2>
                     <input type="date" name="date" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
 
                    <h2 style="float:left;margin-left:70px;margin-right:0;">Начален час:</h2>
-                  <select name="hour" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
+                  <select name="time" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
                       <option value="7">7:00</option>
                       <option value="8">8:00</option>
                       <option value="9">9:00</option>

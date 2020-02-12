@@ -1,13 +1,9 @@
 <?php
+include 'conf.php';
 session_start();
-?>
 
-<?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -78,12 +74,12 @@ if($authority === "Преподавател"){
         <div class="content">
             <h2 style="text-align:center;">Моля, изберете опция за запазване и попълнете всички полета!</h2>
            </div>
-   
+     
 
            <div class="search_room" id="left">
                <h1>Запазване на зала:</h1>
 
-               <form id="left" action="" method="post">
+               <form id="left" action="/roomsOnFloor1.php" method="post" autocomplete="off">
                  <h2>Сграда:</h2>
                 <select name="building">
                     <option value="ФМИ">ФМИ</option>
@@ -104,8 +100,6 @@ if($authority === "Преподавател"){
                     <h2>Дата:</h2>
                     <input type="date" name="date">
 
-
-
                    <h2>Час:</h2>
                   <select name="hour">
                       <option value="7">7:00</option>
@@ -124,6 +118,9 @@ if($authority === "Преподавател"){
                       <option value="20">20:00</option>
                       <option value="21">21:00</option>
                     </select>
+
+                    <h2>Продължителност:</h2>
+                    <input type="text" name="duration"required>
 
                     <input type="submit" name="submit" value="Запазване">
                </form>
