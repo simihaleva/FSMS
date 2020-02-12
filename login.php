@@ -1,12 +1,9 @@
 <?php
 session_start();
 
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
+include 'conf.php';
 
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if ( mysqli_connect_errno() ) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -47,23 +44,23 @@ if ( !isset($_POST['username'], $_POST['password']) ) {
             $stmt->close();
            
             if($authority === "Преподавател"){
-            header('location: login_home.php');
+            header('location: home_logged.php');
             }
 
             else {
-                header("Location: login_home1.php");
+                header("Location: home_logged_student.php");
             }
         }
             else { 
             $error = "Невалидна парола! Опитайте отново!";
             $_SESSION["error"] = $error;
-            header("location: login1.php");
+            header("location: login_form.php");
         }
     }
      else {
         $error = "Невалидно потребителско име! Опитайте отново!";
         $_SESSION["error"] = $error;
-        header("location: login1.php");
+        header("location: login_form.php");
     }
 
 	$stmt->close();

@@ -1,12 +1,9 @@
 <?php
 session_start();
 
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
+include 'conf.php';
 
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -26,19 +23,19 @@ if ($stmt = $con->prepare('SELECT id, password FROM user  WHERE username = ?')) 
 	if ($stmt->num_rows > 0) {
         $error = "Потребителското име вече съществува! Опитайте с друго!";
         $_SESSION["error"] = $error;
-        header("location: register_beg.php");
+        header("location: register_form.php");
 	} else {
 if ($stmt = $con->prepare('INSERT INTO user (username, password, email, first_name, last_name, fn, authority) VALUES (?,?,?,?,?,?,?)')) {
-	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	$stmt->bind_param('sssssss' ,$_POST['username'], $password, $_POST['email'],  $_POST['first_name'],$_POST['last_name'],$_POST['fn'],$_POST['authority']);
 	$stmt->execute();
     $error = "Успешно се регистрирахте в системата! Вече можете да влезете в профила си!";
     $_SESSION["error"] = $error;
-    header("location: register_beg.php");
+    header("location: register_form.php");
 } else {
     $error = "Неуспешна регистрация! Опитайте отново!";
     $_SESSION["error"] = $error;
-    header("location: register_beg.php");
+    header("location: register_form.php");
 }
 	}
 	$stmt->close();
@@ -47,7 +44,7 @@ if ($stmt = $con->prepare('INSERT INTO user (username, password, email, first_na
 else {
     $error = "Неуспешна регистрация! Опитайте отново!";
     $_SESSION["error"] = $error;
-    header("location: register_beg.php");
+    header("location: register_form.php");
 }
 
 $con->close();

@@ -3,15 +3,13 @@
 session_start();
 
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login1.php');
+	header('Location: login_form.php');
 	exit();
 }
 
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'conf.php';
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -27,10 +25,10 @@ $stmt->close();
 <?php
                  
 if($authority === "Преподавател"){
-    $link = "login_home.php";
+    $link = "home_logged.php";
     }
     else {
-        $link = "login_home1.php";
+        $link = "home_logged_student.php";
     }
 
 ?>
@@ -46,7 +44,7 @@ if($authority === "Преподавател"){
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-            <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+            <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
                 <h1>ФМИ - Управление на график по етажи</h1>
                
 				<a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>

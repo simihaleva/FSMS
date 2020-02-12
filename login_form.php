@@ -17,9 +17,9 @@ session_start();
 
 		<nav class="navtop">
 			<div>
-                <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+                <a class="logo" href="beginning.html"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
 				<h1>ФМИ - Управление на график по етажи</h1>
-				<a href="register.html"><i class="fas fa-sign-in-alt"></i>Регистрация</a>
+				<a href="register_form.php"><i class="fas fa-sign-in-alt"></i>Регистрация</a>
                 <a href="beginning.html"><i class="fas fa-home"></i>Начало</a>
 			</div>
         </nav>

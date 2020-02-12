@@ -20,9 +20,9 @@ session_start();
 
 		<nav class="navtop">
 			<div>
-                <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+                <a class="logo" href="beginning.html"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
 				<h1>ФМИ - Управление на график по етажи</h1>
-				<a href="login1.php"><i class="fas fa-sign-in-alt"></i>Вход</a>
+				<a href="login_form.php"><i class="fas fa-sign-in-alt"></i>Вход</a>
                 <a href="beginning.html"><i class="fas fa-home"></i>Начало</a>
                 
            
@@ -32,7 +32,7 @@ session_start();
         <br>
         <div class="content">
          <h2 style="text-align:center;">Моля, попълнете необходимите полета!</h2>
-         <h3 style="font-size:15px; text-align: center" >Забележка: Ако сте преподавател, оставете празно полето "Факултетен номер"! Изберете опция "Асистент" само ако сте студент и в момента преподавате!</h3>
+         <h3 style="font-size:15px; text-align: center" >Забележка: Ако сте преподавател или завършил асистент, оставете празно полето "Факултетен номер"!</h3>
         </div>
 
         <style type=text/css> 
