@@ -27,8 +27,6 @@ session_start();
         <div>
         <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
             <h1>Стая '.$room.'</h1>
-            <a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
-            <a href="<?=$link1?>"><i class="fas fa-backward"></i>Назад</a>
         </div>
     </nav>
     ';
@@ -36,7 +34,9 @@ session_start();
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT  *  FROM room r join schedule s ON r.id=s.id_room WHERE room='$room' ");
+       
+        $stmt = $conn->prepare("SELECT  r.id,r.building,r.floor,r.room,r.capacity,r.is_computer,r.description,
+        s.date,s.start_hour,s.subject,s.id_teacher,s.is_lecture,s.specialty,s.course,s.group,s.duration FROM room r left join schedule s ON r.id=s.id_room WHERE r.room='$room' ");
         $stmt->execute();
         $row=$stmt->fetch();
         echo'

@@ -11,7 +11,7 @@ body {
   	margin: 0;
 }
 .register {
-  	width: 400px;
+  	width: 380px;
       background-color: #ffffff;
       //background-color: #435165;
   	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
@@ -177,7 +177,7 @@ body.search_schedule {
 
 }
     
- .search_room form  input[type="date"] {
+ .search_room form  input[type="date"],.search_room form input[type="text"] {
     width: 200px;
     height: 40px;
     border: 1px solid #dee0e4;

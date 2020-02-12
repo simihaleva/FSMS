@@ -9,7 +9,7 @@ session_start();
         <link rel="stylesheet" type="text/css" href="floor.css">
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" type="image/png">
 		<link href="navtop.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		
 
     </head>
     <body>
@@ -23,7 +23,7 @@ session_start();
         $building=$_POST['building'];
         $time=$_POST['hour'];
         $date=$_POST['date'];
-
+      
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -41,8 +41,7 @@ session_start();
                <div>
                <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
                    <h1>Сграда '.$building.' Етаж '.$floor.' </h1>
-                   <a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
-                   <a href="<?=$link1?>"><i class="fas fa-backward"></i>Назад</a>
+                  
                </div>
            </nav>
            ';

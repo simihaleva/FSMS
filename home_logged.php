@@ -70,7 +70,6 @@ if($authority === "Преподавател" || $authority === "Асистент
                 <a class = "links" href="schedule.php"><i class="fas fa-calendar-alt"></i>Седмично разписание</a>
                 <a class = "links" href="<?=$link?>"><i class="fas fa-university"></i>Зали</a>
                 <a class = "links" href="exam_dates.php"><i class="fas fa-book-dead"></i>Сесия</a>
-                <a class = "links" href="exams.php"><i class="fas fa-file-alt"></i>Заявяване на изпит</a>
 			</div>
         </nav>
         <br>

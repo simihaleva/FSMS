@@ -1,5 +1,32 @@
-<?php
+<?php 
+include 'conf.php';
 session_start();
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
+if (mysqli_connect_errno()) {
+	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+
+$stmt = $con->prepare('SELECT first_name, last_name, email, authority, created_at FROM user  WHERE id = ?');
+$stmt->bind_param('i', $_SESSION['id']);
+$stmt->execute();
+$stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
+$stmt->fetch();
+$stmt->close();
+                 
+if($authority === "Преподавател"){
+    $link = "home_logged.php";
+    }
+    else {
+        $link = "home_logged_student.php";
+    }
+                 
+    if($authority === "Преподавател" || $authority === "Асистент" ){
+         $link1 = "rooms_options.php";
+    }
+    else {
+        $link1 = "rooms_options_student.php";
+     }
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +44,7 @@ session_start();
         
         
         include 'functions.php';
-        include 'conf.php';
+       
 
         $floor=$_POST['floor'];
         $building=$_POST['building'];

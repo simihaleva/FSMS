@@ -6,7 +6,6 @@
             $end_schedule=0;
 
             if(!$roomsInSchedule){
-                echo'no schedule';
                 return false;
             }
             foreach($roomsInSchedule as $currentSchedule){
