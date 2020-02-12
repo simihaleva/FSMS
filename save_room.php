@@ -7,34 +7,26 @@ $con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
+
 $stmt = $con->prepare('SELECT first_name, last_name, email, authority, created_at FROM user  WHERE id = ?');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
 $stmt->fetch();
 $stmt->close();
-?>
-
-<?php
                  
 if($authority === "Преподавател"){
-    $link = "login_home.php";
+    $link = "home_logged.php";
     }
     else {
-        $link = "login_home1.php";
+        $link = "home_logged_student.php";
     }
-
-?>
-
-<?php
                  
     if($authority === "Преподавател" || $authority === "Асистент" ){
-         $link1 = "rooms_choice.php";
+         $link1 = "rooms_options.php";
     }
     else {
-        $link1 = "rooms_choice1.php";
+        $link1 = "rooms_options_student.php";
      }
                  
 ?>
@@ -50,13 +42,12 @@ if($authority === "Преподавател"){
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" type="image/png">
     <title>FMI Floor Schedule</title>
 
-		<link href="login.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-            <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+            <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
 				<h1>ФМИ - Управление на график по етажи </h1>
 				<a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
 				<a href="<?=$link1?>"><i class="fas fa-backward"></i>Назад</a>

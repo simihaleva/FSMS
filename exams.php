@@ -1,33 +1,25 @@
 <?php
 session_start();
-?>
 
-<?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'conf.php';
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
+
 $stmt = $con->prepare('SELECT first_name, last_name, email, authority, created_at FROM user  WHERE id = ?');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
 $stmt->fetch();
 $stmt->close();
-?>
-
-<?php
                  
 if($authority === "Преподавател"){
-    $link = "login_home.php";
+    $link = "home_logged.php";
     }
     else {
-        $link = "login_home1.php";
+        $link = "home_logged_student.php";
     }
 
 ?>
@@ -42,13 +34,12 @@ if($authority === "Преподавател"){
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" type="image/png">
     <title>FMI Floor Schedule</title>
 
-		<link href="login.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-            <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+            <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
 				<h1>ФМИ - Управление на график по етажи </h1>
 				<a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Изход</a>
@@ -77,6 +68,8 @@ if($authority === "Преподавател"){
                 <select name="specialty" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
                     <option value="Компютърни науки">Компютърни науки</option>
                     <option value="Софтуерно инженерство">Софтуерно инженерство</option>
+                    <option value="Информационни системи">Информационни системи</option>
+                    <option value="Информатика">Информатика</option>
                   </select>
 
                   <h2 style="float:left;margin-left:70px;margin-right:0;">Курс:</h2>

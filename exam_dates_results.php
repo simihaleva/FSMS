@@ -3,14 +3,10 @@ session_start();
 
 $_SESSION['specialty'] = $_POST['specialty'];
 $_SESSION['course'] = $_POST['course'];
-?>
 
-<?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'conf.php';
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -21,15 +17,12 @@ $stmt->execute();
 $stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
 $stmt->fetch();
 $stmt->close();
-?>
-
-<?php
                  
 if($authority === "Преподавател"){
-    $link = "login_home.php";
+    $link = "home_logged.php";
     }
     else {
-        $link = "login_home1.php";
+        $link = "home_logged_student.php";
     }
 
 ?>
@@ -41,15 +34,13 @@ if($authority === "Преподавател"){
   <title>Exam Dates</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" type="image/png"> 
-<link rel="stylesheet" type="text/css" href="table.css">
+<link rel="stylesheet" type="text/css" href="schedule.css">
 </head>
 <body>
 
-
-
 <nav class="navtop">
 			<div>
-                <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+                <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
 
                 <h1><?=$_SESSION['specialty']?> Курс: <?=$_SESSION['course']?></h1>
                 <h2>Сесия: <br> Начало: 2020-06-08 <br> Край: 2020-07-03 </h2>
@@ -60,13 +51,6 @@ if($authority === "Преподавател"){
                 <a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
 			</div>
         </nav>
-
-
-
-        <?php
-
-?>
-
 
 <table   id="scheduletable2" >
                <tr style="border-bottom:double;">
@@ -115,19 +99,12 @@ function show_exams(index,date,hour,subject,teacher,building,room,duration) {
 
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = '';
-$dbname = "fsms";
-
-
-
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT s.subject, s.day_of_week, s.start_hour, s.group, s.is_lecture, s.duration, s.date, s.specialty, s.course, 
+    $stmt = $conn->prepare("SELECT s.subject, s.start_hour, s.group, s.is_lecture, s.duration, s.date, s.specialty, s.course, 
                                    u.first_name, u.last_name, r.building, r.room FROM schedule s left join room r on (s.id_room = r.id)
-                                                                                                 left join user u on (s.id_teacher=u.id)");
+                                                                                                 left join user u on (s.id_teacher=u.id) order by s.date asc ");
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $i = 1;
@@ -180,9 +157,6 @@ catch(PDOException $e) {
 $conn = null;
 
     ?>
-
-
-
 
 </body>
 </html>

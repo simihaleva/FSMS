@@ -1,13 +1,9 @@
 <?php
 session_start();
-?>
 
-<?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'conf.php';
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -18,15 +14,12 @@ $stmt->execute();
 $stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
 $stmt->fetch();
 $stmt->close();
-?>
-
-<?php
                  
 if($authority === "Преподавател"){
-    $link = "login_home.php";
+    $link = "home_logged.php";
     }
     else {
-        $link = "login_home1.php";
+        $link = "home_logged_student.php";
     }
 
 ?>
@@ -37,7 +30,7 @@ if($authority === "Преподавател"){
         <meta charset="utf-8">
         <link href="login.css" rel="stylesheet" type="text/css">
         <link href="register.css" rel="stylesheet" type="text/css">
-        
+
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" type="image/png">
     <title>FMI Floor Schedule</title>
 
@@ -47,7 +40,7 @@ if($authority === "Преподавател"){
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-            <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+            <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
 				<h1>ФМИ - Управление на график по етажи </h1>
 				<a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Изход</a>
@@ -61,7 +54,7 @@ if($authority === "Преподавател"){
         </div>
 
         <div class="content">
-            <h2 style="text-align:center;">Моля, изберете опция в задължителните полета!</h2>
+            <h2 style="text-align:center;">Моля, изберете опция във всички полета!</h2>
            </div>
 
            <h3 style="font-size:18px; text-align: center" >Сесията за летен семестър ще се проведе в периода: 08.06.2020г. - 03.07.2020г.</h3>
@@ -74,6 +67,8 @@ if($authority === "Преподавател"){
                 <select name="specialty">
                     <option value="Компютърни науки">Компютърни науки</option>
                     <option value="Софтуерно инженерство">Софтуерно инженерство</option>
+                    <option value="Информационни системи">Информационни системи</option>
+                    <option value="Информатика">Информатика</option>
                   </select>
 
                   <h2>Курс:</h2>

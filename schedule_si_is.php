@@ -1,13 +1,9 @@
 <?php
 session_start();
-?>
 
-<?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'conf.php';
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -18,18 +14,32 @@ $stmt->execute();
 $stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
 $stmt->fetch();
 $stmt->close();
+                 
+if($authority === "Преподавател"){
+    $link = "home_logged.php";
+    }
+    else {
+        $link = "home_logged_student.php";
+    }
+
 ?>
 
 <?php
-                 
-if($authority === "Преподавател"){
-    $link = "login_home.php";
-    }
-    else {
-        $link = "login_home1.php";
-    }
-
-?>
+            function day_of_week_bg($date) {
+                $weekday = date('w', strtotime($date));
+                switch ($weekday) 
+                {
+                    case 0: return "Неделя"; break;
+                    case 1: return "Понеделник"; break;
+                    case 2: return "Вторник"; break;
+                    case 3: return "Сряда"; break;
+                    case 4: return "Четвъртък"; break;
+                    case 5: return "Петък"; break;
+                    case 6: return "Събота"; break;
+                    default: echo "Error!";
+                }
+            }
+        ?>
 
 <!DOCTYPE html>
 <html>
@@ -38,17 +48,15 @@ if($authority === "Преподавател"){
   <title>Schedule</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" type="image/png"> 
-<link rel="stylesheet" type="text/css" href="table.css">
+<link rel="stylesheet" type="text/css" href="schedule.css">
 </head>
 <body>
 
-
-
 <nav class="navtop">
 			<div>
-                <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+                <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
                 <h1><?=$_SESSION['specialty']?> Курс: <?=$_SESSION['course']?></h1>
-                <h2><?=$_SESSION['date']?></h2>
+                <h2><?=day_of_week_bg($_SESSION['date'])?>, <?=$_SESSION['date']?></h2>
 
 				<a href="schedule.php"><i class="fas fa-search"></i>Ново търсене</a>
                 <a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
@@ -857,6 +865,22 @@ if($authority === "Преподавател"){
          </tr>
            </table>
 
+           <?php
+            function day_of_week($date) {
+                $weekday = date('w', strtotime($date));
+                switch ($weekday) 
+                {
+                    case 0: return "Sunday"; break;
+                    case 1: return "Monday"; break;
+                    case 2: return "Tuesday"; break;
+                    case 3: return "Wednesday"; break;
+                    case 4: return "Thursday"; break;
+                    case 5: return "Friday"; break;
+                    case 6: return "Saturday"; break;
+                    default: echo "Error!";
+                }
+            }
+        ?>
 
            <script>
                function writeDataLecture(res,index,dur) {
@@ -925,31 +949,29 @@ if($authority === "Преподавател"){
 
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = '';
-$dbname = "fsms";
-
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $stmt = $conn->prepare("SELECT s.subject, s.day_of_week, s.start_hour, s.group, s.is_lecture, s.duration, s.date, s.specialty, s.course, 
+   $stmt = $conn->prepare("SELECT s.subject, s.start_hour, s.group, s.is_lecture, s.duration, s.date, s.specialty, s.course, 
    u.first_name, u.last_name, r.building, r.room FROM schedule s left join room r on (s.id_room = r.id)
                                                                  left join user u on (s.id_teacher=u.id)");
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     while ($row = $stmt->fetch()){
         $result = $row['subject'].",".$row['building'].",".$row['room'].",".$row['first_name']." ".$row['last_name'];
-        $day = $row['day_of_week'];
+        //$day = $row['day_of_week'];
         $hour = $row['start_hour'];
         $group = $row['group'];
         $islecture = $row['is_lecture'];
         $duration = $row['duration'];
         $date = $row['date'];
+        $day = day_of_week($date);
         $course = $row['course'];
+        $specialty = $row['specialty'];
 
         $wanted_date = $_SESSION['date'];
         $wanted_course = $_SESSION['course'];
+        $wanted_specialty = $_SESSION['specialty'];
         
         $begin = new DateTime( date("Y-m-d", strtotime('monday this week', strtotime($wanted_date))) );
         $end   = new DateTime( date("Y-m-d", strtotime('sunday this week', strtotime($wanted_date))) );
@@ -960,7 +982,7 @@ try {
             }
         }
 
-        if($ok === 1 && $wanted_course === $course){
+        if($ok === 1 && $wanted_course === $course && $wanted_specialty === $specialty){
 
         echo "<script>dur = '$duration'</script>";
         switch($day)

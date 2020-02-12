@@ -152,13 +152,12 @@ body.search_schedule {
     //border-bottom: 1px solid #dee0e4;
 }
 
-
 .search_room {
     width: 400px;
     background-color: #ffffff;
     //background-color: #435165;
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-    margin: 50px 460px ;
+    margin: 50px 540px ;
     margin-right:0px;
     //float: left;
 
@@ -229,7 +228,7 @@ body.search_room {
     background-color: #ffffff;
     //background-color: #435165;
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-    margin: 50px 460px;
+    margin: 50px 540px;
     //float: right;
     margin-left:0px;
 

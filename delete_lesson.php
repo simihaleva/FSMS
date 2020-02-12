@@ -1,46 +1,35 @@
 <?php
 session_start();
-?>
 
-<?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'conf.php';
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
+
 $stmt = $con->prepare('SELECT first_name, last_name, email, authority, created_at FROM user  WHERE id = ?');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
 $stmt->fetch();
 $stmt->close();
-?>
-
-<?php
                  
 if($authority === "Преподавател"){
-    $link = "login_home.php";
+    $link = "home_logged.php";
     }
     else {
-        $link = "login_home1.php";
+        $link = "home_logged_student.php";
     }
-
-?>
-
-<?php
                  
     if($authority === "Преподавател" || $authority === "Асистент" ){
-         $link1 = "rooms_choice.php";
+         $link1 = "rooms_options.php";
     }
     else {
-        $link1 = "rooms_choice1.php";
+        $link1 = "rooms_options_student.php";
      }
-                 
+         
+        
 ?>
 
 
@@ -60,7 +49,7 @@ if($authority === "Преподавател"){
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-            <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+            <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
 				<h1>ФМИ - Управление на график по етажи </h1>
 				<a href="<?=$link?>"><i class="fas fa-home"></i>Начало</a>
 				<a href="<?=$link1?>"><i class="fas fa-backward"></i>Назад</a>
@@ -95,11 +84,10 @@ if($authority === "Преподавател"){
         }
     ?> 
 
-   
            <div class="search_schedule" style="width:500px;">
                <h1>Отмяна на занятие</h1>
 
-               <form action="drop_result.php" method="post">
+               <form action="delete_lesson_result.php" method="post">
 
                     <h2 style="float:left;margin-left:70px;margin-right:0;">Сграда:</h2>
                 <select name="building" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
@@ -107,16 +95,6 @@ if($authority === "Преподавател"){
                     <option value="Ректорат">Ректорат</option>
                     <option value="Блок 2">Блок 2</option>
                   </select>
-
-                  <!--<h2 style="float:left;margin-left:70px;margin-right:0;">Етаж:</h2>
-                  <select name="floor" style="float:right;margin-right:70px;margin-left:0;margin-top:9px">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>-->
 
                     <h2 style="float:left;margin-left:70px;margin-right:0;" >Зала:</h2>
                     <input type="text" id="room"  placeholder="Въведете текст:" name="room" style="float:right;margin-right:70px;margin-left:0;margin-top:9px" required>
@@ -150,13 +128,13 @@ if($authority === "Преподавател"){
            </div>
 
 <?php
-           /* if(isset($_SESSION['submit'])){
+            if(isset($_SESSION['submit'])){
             $selected_val_s = $_POST['specialty'];
 
             $selected_val_c = $_POST['course'];
             $selected_val_d = $_POST['date'];
-            }*/
-                ?>
+            }
+?>
                 
 
 

@@ -1,13 +1,9 @@
 <?php
 session_start();
-?>
 
-<?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'fsms';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'conf.php';
+
+$con = mysqli_connect($servername, $username, $password, $dbname);
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -18,20 +14,32 @@ $stmt->execute();
 $stmt->bind_result($first_name, $last_name, $email, $authority,$created_at);
 $stmt->fetch();
 $stmt->close();
+                
+if($authority === "Преподавател"){
+    $link = "home_logged.php";
+    }
+    else {
+        $link = "home_logged_student.php";
+    }
+
 ?>
 
 <?php
-                 
-if($authority === "Преподавател"){
-    $link = "login_home.php";
-    }
-    else {
-        $link = "login_home1.php";
-    }
-
-?>
-
-
+            function day_of_week_bg($date) {
+                $weekday = date('w', strtotime($date));
+                switch ($weekday) 
+                {
+                    case 0: return "Неделя"; break;
+                    case 1: return "Понеделник"; break;
+                    case 2: return "Вторник"; break;
+                    case 3: return "Сряда"; break;
+                    case 4: return "Четвъртък"; break;
+                    case 5: return "Петък"; break;
+                    case 6: return "Събота"; break;
+                    default: echo "Error!";
+                }
+            }
+        ?>
 
 <!DOCTYPE html>
 <html>
@@ -40,18 +48,16 @@ if($authority === "Преподавател"){
   <title>Schedule</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" type="image/png"> 
-<link rel="stylesheet" type="text/css" href="table.css">
+<link rel="stylesheet" type="text/css" href="schedule.css">
 </head>
 <body>
 
-
-
-
 <nav class="navtop">
 			<div>
-                <a class="logo" href="#whsel"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+                <a class="logo" href="<?=$link?>"><img src="https://cdn4.iconfinder.com/data/icons/time-date-management/512/schedule_clock-512.png" width="80" height="50" align="left" alt="Logo" /></a>
+
                 <h1><?=$_SESSION['specialty']?> Курс: <?=$_SESSION['course']?></h1>
-                <h2><?=$_SESSION['date']?></h2>
+                <h2><?=day_of_week_bg($_SESSION['date'])?>, <?=$_SESSION['date']?></h2>
   
 
 				<a href="schedule.php"><i class="fas fa-search"></i>Ново търсене</a>
@@ -82,7 +88,7 @@ if($authority === "Преподавател"){
 
                <tr>
                    <td id="M"  rowspan="4"> Понеделник</td>
-                  <td id="H">5</td>
+                  <td id="H">1</td>
                   <td id="1"></td>
                   <td id="2"></td>
                   <td id="3"></td>
@@ -102,7 +108,7 @@ if($authority === "Преподавател"){
                </tr>
                
                <tr>
-                <td id="H">6</td>
+                <td id="H">2</td>
                 <td id="16"></td>
                   <td id="17"></td>
                   <td id="18"></td>
@@ -120,7 +126,7 @@ if($authority === "Преподавател"){
                   <td id="30"></td>
             </tr>
             <tr>
-                <td id="H">7</td>
+                <td id="H">3</td>
                 <td id="31"></td>
                   <td id="32"></td>
                   <td id="33"></td>
@@ -138,7 +144,7 @@ if($authority === "Преподавател"){
                   <td id="45"></td>
             </tr>
             <tr style="border-bottom:double;">
-                <td id="H">8</td>
+                <td id="H">4</td>
                 <td id="46"></td>
                   <td id="47"></td>
                   <td id="48"></td>
@@ -158,7 +164,7 @@ if($authority === "Преподавател"){
 
                <tr>
                 <td id="Tu" rowspan="4">Вторник</td>
-                <td id="H">5</td>
+                <td id="H">1</td>
                 <td id="61"></td>
                   <td id="62"></td>
                   <td id="63"></td>
@@ -178,7 +184,7 @@ if($authority === "Преподавател"){
 
                </tr>
                <tr>
-                <td id="H">6</td>
+                <td id="H">2</td>
                 <td id="76"></td>
                   <td id="77"></td>
                   <td id="78"></td>
@@ -196,7 +202,7 @@ if($authority === "Преподавател"){
                   <td id="90"></td>
             </tr>
             <tr>
-                <td id="H">7</td>
+                <td id="H">3</td>
                 <td id="91"></td>
                   <td id="92"></td>
                   <td id="93"></td>
@@ -214,7 +220,7 @@ if($authority === "Преподавател"){
                   <td id="105"></td>
             </tr>
             <tr style="border-bottom:double;">
-                <td id="H">8</td>
+                <td id="H">4</td>
                 <td id="106"></td>
                   <td id="107"></td>
                   <td id="108"></td>
@@ -233,7 +239,7 @@ if($authority === "Преподавател"){
             </tr>
                <tr>
                    <td id="W" rowspan="4">Сряда</td>
-                   <td id="H">5</td>
+                   <td id="H">1</td>
                    <td id="121"></td>
                   <td id="122"></td>
                   <td id="123"></td>
@@ -251,7 +257,7 @@ if($authority === "Преподавател"){
                   <td id="135"></td>
                </tr>
                <tr>
-                <td id="H">6</td>
+                <td id="H">2</td>
                 <td id="136"></td>
                   <td id="137"></td>
                   <td id="138"></td>
@@ -269,7 +275,7 @@ if($authority === "Преподавател"){
                   <td id="150"></td>
             </tr>
             <tr>
-                <td id="H">7</td>
+                <td id="H">3</td>
                 <td id="151"></td>
                   <td id="152"></td>
                   <td id="153"></td>
@@ -287,7 +293,7 @@ if($authority === "Преподавател"){
                   <td id="165"></td>
             </tr>
             <tr style="border-bottom:double;">
-                <td id="H">8</td>
+                <td id="H">4</td>
                 <td id="166"></td>
                   <td id="167"></td>
                   <td id="168"></td>
@@ -306,7 +312,7 @@ if($authority === "Преподавател"){
             </tr>
                <tr>
                    <td id="Th" rowspan="4">Четвъртък</td>
-                   <td id="H">5</td>
+                   <td id="H">1</td>
                    <td id="181"></td>
                   <td id="182"></td>
                   <td id="183"></td>
@@ -324,7 +330,7 @@ if($authority === "Преподавател"){
                   <td id="195"></td>
                </tr>
                <tr>
-                <td id="H">6</td>
+                <td id="H">2</td>
                 <td id="196"></td>
                   <td id="197"></td>
                   <td id="198"></td>
@@ -342,7 +348,7 @@ if($authority === "Преподавател"){
                   <td id="210"></td>
             </tr>
             <tr>
-                <td id="H">7</td>
+                <td id="H">3</td>
                 <td id="211"></td>
                   <td id="212"></td>
                   <td id="213"></td>
@@ -360,7 +366,7 @@ if($authority === "Преподавател"){
                   <td id="225"></td>
             </tr>
             <tr style="border-bottom:double;">
-                <td id="H">8</td>
+                <td id="H">4</td>
                 <td id="226"></td>
                   <td id="227"></td>
                   <td id="228"></td>
@@ -379,7 +385,7 @@ if($authority === "Преподавател"){
             </tr>
                <tr>
                    <td id="F" rowspan="4">Петък</td>
-                   <td id="H">5</td>
+                   <td id="H">1</td>
                    <td id="241"></td>
                   <td id="242"></td>
                   <td id="243"></td>
@@ -398,7 +404,7 @@ if($authority === "Преподавател"){
 
                </tr>  
                <tr>
-                <td id="H">6</td>
+                <td id="H">2</td>
                 <td id="256"></td>
                   <td id="257"></td>
                   <td id="258"></td>
@@ -416,7 +422,7 @@ if($authority === "Преподавател"){
                   <td id="270"></td>
             </tr>
             <tr>
-                <td id="H">7</td>
+                <td id="H">3</td>
                 <td id="271"></td>
                   <td id="272"></td>
                   <td id="273"></td>
@@ -434,7 +440,7 @@ if($authority === "Преподавател"){
                   <td id="285"></td>
             </tr>
             <tr style="border-bottom:double;">
-                <td id="H">8</td>
+                <td id="H">4</td>
                 <td id="286"></td>
                   <td id="287"></td>
                   <td id="288"></td>
@@ -453,7 +459,7 @@ if($authority === "Преподавател"){
             </tr>
             <tr>
                 <td id="Sa" rowspan="4"> Събота</td>
-               <td id="H">5</td>
+               <td id="H">1</td>
                <td id="301"></td>
                   <td id="302"></td>
                   <td id="303"></td>
@@ -472,7 +478,7 @@ if($authority === "Преподавател"){
 
             </tr>
             <tr>
-             <td id="H">6</td>
+             <td id="H">2</td>
              <td id="316"></td>
                   <td id="317"></td>
                   <td id="318"></td>
@@ -490,7 +496,7 @@ if($authority === "Преподавател"){
                   <td id="330"></td>
          </tr>
          <tr>
-             <td id="H">7</td>
+             <td id="H">3</td>
              <td id="331"></td>
                   <td id="332"></td>
                   <td id="333"></td>
@@ -508,7 +514,7 @@ if($authority === "Преподавател"){
                   <td id="345"></td>
          </tr>
          <tr style="border-bottom:double;">
-             <td id="H">8</td>
+             <td id="H">4</td>
              <td id="346"></td>
                   <td id="347"></td>
                   <td id="348"></td>
@@ -527,7 +533,7 @@ if($authority === "Преподавател"){
          </tr>
          <tr>
             <td id="Su" rowspan="4"> Неделя</td>
-           <td id="H">5</td>
+           <td id="H">1</td>
            <td id="361"></td>
                   <td id="362"></td>
                   <td id="363"></td>
@@ -546,7 +552,7 @@ if($authority === "Преподавател"){
 
         </tr>
         <tr>
-         <td id="H">6</td>
+         <td id="H">2</td>
          <td id="376"></td>
                   <td id="377"></td>
                   <td id="378"></td>
@@ -565,7 +571,7 @@ if($authority === "Преподавател"){
 
         </tr>
      <tr>
-         <td id="H">7</td>
+         <td id="H">3</td>
          <td id="391"></td>
                   <td id="392"></td>
                   <td id="393"></td>
@@ -584,7 +590,7 @@ if($authority === "Преподавател"){
 
         </tr>
      <tr style="border-bottom:double;">
-         <td id="H">8</td>
+         <td id="H">4</td>
          <td id="406"></td>
                   <td id="407"></td>
                   <td id="408"></td>
@@ -604,19 +610,35 @@ if($authority === "Преподавател"){
         </tr>
            </table>
 
+           <?php
+            function day_of_week($date) {
+                $weekday = date('w', strtotime($date));
+                switch ($weekday) 
+                {
+                    case 0: return "Sunday"; break;
+                    case 1: return "Monday"; break;
+                    case 2: return "Tuesday"; break;
+                    case 3: return "Wednesday"; break;
+                    case 4: return "Thursday"; break;
+                    case 5: return "Friday"; break;
+                    case 6: return "Saturday"; break;
+                    default: echo "Error!";
+                }
+            }
+        ?>
 
            <script>
                function writeDataLecture(res,index,dur) {
-                    document.getElementById(index).innerHTML = res;
-                                
+                    document.getElementById(index).innerHTML = res;                        
                     let i = 1;
                     while (i < 4 ) {
                         i = i + 1;
                         let z = index+15*(i-1);
-                        document.getElementById(z).innerHTML = res;                    
+                        document.getElementById(z).innerHTML = res;                     
                     }
-                                            
+                                                                    
                     const table = document.querySelector("scheduletable");
+
                     let headerCell = null;
                     let j = 0;
                     while (j < 4 ) {
@@ -630,7 +652,7 @@ if($authority === "Преподавател"){
                         else {
                             headerCell.rowSpan++;
                             firstCell.remove();
-                        }                          
+                        }                       
                     }
 
                     var k = 0;
@@ -646,8 +668,8 @@ if($authority === "Преподавател"){
                         }
                     }  
                                                        
-                    document.getElementById(index).style.backgroundColor = "#FFF8DC";
-                    //document.getElementById(index).style.border = "double";                                                          
+                    document.getElementById(index).style.backgroundColor = "#FFF8DC";  
+                    //document.getElementById(index).style.border = "double";                                                        
                }
             </script>
 
@@ -674,31 +696,30 @@ if($authority === "Преподавател"){
 
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = '';
-$dbname = "fsms";
-
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $stmt = $conn->prepare("SELECT s.subject, s.day_of_week, s.start_hour, s.group, s.is_lecture, s.duration, s.date, s.specialty, s.course, 
-   u.first_name, u.last_name, r.building, r.room FROM schedule s left join room r on (s.id_room = r.id)
-                                                                 left join user u on (s.id_teacher=u.id)");
+    $stmt = $conn->prepare("SELECT s.subject, s.start_hour, s.group, s.is_lecture, s.duration, s.date, s.specialty, s.course, 
+                                   u.first_name, u.last_name, r.building, r.room FROM schedule s left join room r on (s.id_room = r.id)
+                                                                                                 left join user u on (s.id_teacher=u.id)");
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     while ($row = $stmt->fetch()){
         $result = $row['subject'].",".$row['building'].",".$row['room'].",".$row['first_name']." ".$row['last_name'];
-        $day = $row['day_of_week'];
+        //$result = $row['subject'];
+        //$day = $row['day_of_week'];
         $hour = $row['start_hour'];
         $group = $row['group'];
         $islecture = $row['is_lecture'];
         $duration = $row['duration'];
         $date = $row['date'];
+        $day = day_of_week($date);
         $course = $row['course'];
+        $specialty = $row['specialty'];
 
         $wanted_date = $_SESSION['date'];
         $wanted_course = $_SESSION['course'];
+        $wanted_specialty = $_SESSION['specialty'];
         
         $begin = new DateTime( date("Y-m-d", strtotime('monday this week', strtotime($wanted_date))) );
         $end   = new DateTime( date("Y-m-d", strtotime('sunday this week', strtotime($wanted_date))) );
@@ -709,7 +730,7 @@ try {
             }
         }
 
-        if($ok === 1 && $wanted_course === $course){
+        if($ok === 1 && $wanted_course === $course && $wanted_specialty === $specialty){
 
         echo "<script>dur = '$duration'</script>";
         switch($day)
@@ -7227,6 +7248,3 @@ $conn = null;
 </body>
 </html>
 
-<?php
-    unset($_SESSION["spec"]);
-?>
